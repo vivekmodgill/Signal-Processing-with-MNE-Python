@@ -6,7 +6,7 @@ from mne.connectivity import envelope_correlation
 from mne.minimum_norm import make_inverse_operator, apply_inverse_epochs
 from mne.preprocessing import compute_proj_ecg, compute_proj_eog
 
-j = ['CC120120', 'CC120137', 'CC120264', 'CC122016', 'CC220107', 'CC220203', 'CC221336', 'CC222120', 'CC320022', 'CC320059', 'CC320814', 'CC321544', 'CC410119', 'CC410182', 'CC420061', 'CC420286', 'CC420435', 'CC420589', 'CC420776', 'CC510255', 'CC510438', 'CC520239']
+j = ['']
 k = '.fif'
 A = '-trans.fif'
 D = '.npy'
