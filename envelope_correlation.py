@@ -6,18 +6,17 @@ from mne.connectivity import envelope_correlation
 from mne.minimum_norm import make_inverse_operator, apply_inverse_epochs
 from mne.preprocessing import compute_proj_ecg, compute_proj_eog
 
-j = ['']
+j = ['file_names_without_extension']
 k = '.fif'
-A = '-trans.fif'
 D = '.npy'
 
 for i in j:
-    subjects_dir = '/home/siddharth/Downloads/freesurfer/subjects/'
-    subject = 'collin'
-    bem = os.path.join('/home/siddharth/Downloads/freesurfer/subjects/collin/bem_sol.fif')
-    src = os.path.join('/home/siddharth/Downloads/freesurfer/subjects/collin/src.fif')
-    trans = os.path.join('/home/siddharth/Vivek/Working/Data/fiducials/new_22_fiducials/', i+A)
-    raw = mne.io.read_raw_fif(os.path.join('/home/siddharth/Work/vivek/', i+k), verbose='error')
+    subjects_dir = 'path of the freesurfer subject directory'
+    subject = 'subject name'
+    bem = os.path.join('BEM solution file path')
+    src = os.path.join('src solution file path')
+    trans = os.path.join('trans solution file path')
+    raw = mne.io.read_raw_fif(os.path.join('raw file path', i+k), verbose='error')
     raw.crop(0, None).load_data().pick_types(meg=True, eeg=False).resample(90)
     raw.apply_gradient_compensation(0)
     cov = mne.make_ad_hoc_cov(raw.info, std=None, verbose=None)
@@ -36,5 +35,5 @@ for i in j:
     corr = envelope_correlation(label_ts)
     np.fill_diagonal(corr, 0)
     b = np.tril(corr, k=0)
-    np.save(os.path.join('/home/siddharth/Vivek/Working/Data/results/En_Corr/delta/new_22_added', i+D), b)
+    np.save(os.path.join('path for result files to be saved', i+D), b)
 
